@@ -1,0 +1,9 @@
+{
+  "Rainfall_mm": 80,
+  "RiverLevel_m": 3.5,
+  "Temperature_C": 29,
+  "Humidity_pct": 85,
+  "SoilMoisture_pct": 65,
+  "DrainageIndex": 35,
+  "Elevation_m": 12
+}

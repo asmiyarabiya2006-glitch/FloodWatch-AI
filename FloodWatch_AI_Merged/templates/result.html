@@ -1,0 +1,7 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>Prediction Result</title><link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}"></head><body><main class="container">
+<nav><a href="/">FloodWatch AI</a><div><a href="/dashboard">Dashboard</a><a href="/history">History</a></div></nav>
+<h1>Prediction Result</h1><section class="panel"><p class="muted">Location: {{ location }}</p><div class="risk">{{ result.risk_level }}</div><p>Predicted target: <strong>{{ result.target }}</strong></p><p>Model task: {{ result.task }}</p>
+{% if result.class_probabilities %}<h3>Class probability estimates</h3>{% for label,prob in result.class_probabilities.items() %}<p>{{ label }} — {{ "%.1f"|format(prob*100) }}%</p>{% endfor %}<small>{{ result.probability_note }}</small>{% endif %}</section>
+<h2>Submitted event details</h2><div class="table-wrap"><table><tbody>{% for key,value in features.items() %}<tr><th>{{ key }}</th><td>{{ value }}</td></tr>{% endfor %}</tbody></table></div>
+<p class="warning">This is a model classification based on historical dataset features, not an official warning or guarantee of future flooding. Follow government and emergency-service advisories.</p>
+<a class="button-link" href="/prediction">New Prediction</a> <a href="/dashboard">Dashboard</a></main></body></html>

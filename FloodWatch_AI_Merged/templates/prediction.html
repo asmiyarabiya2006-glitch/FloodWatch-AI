@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>FloodWatch AI | Prediction</title><link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}"></head>
+<body><main class="container">
+<nav><a href="/">FloodWatch AI</a><div><a href="/dashboard">Dashboard</a><a href="/alerts">Alerts</a><a href="/history">History</a></div></nav>
+<h1>Flood Event Classification</h1>
+<p class="muted">Enter the event measurements required by the trained Member 1 model. Use the same units and date format shown.</p>
+{% with messages = get_flashed_messages(with_categories=true) %}{% for category, message in messages %}<div class="notice">{{ message }}</div>{% endfor %}{% endwith %}
+<form action="{{ url_for('predict') }}" method="POST" class="form-grid">
+<div class="field full"><label for="location">Location / Gauge name</label><input id="location" name="location" value="{{ (submitted or {}).get('location','') }}" placeholder="Example: River gauge / district" required></div>
+{% for key,label,kind in features %}
+<div class="field"><label for="{{ loop.index }}">{{ label }}</label><input id="{{ loop.index }}" name="{{ key }}" type="{{ kind }}" {% if kind == 'number' %}step="any" min="0"{% endif %} value="{{ (submitted or {}).get(key,'') }}" required></div>
+{% endfor %}
+<div class="full"><button type="submit">Predict Flood Category</button></div></form>
+<p class="warning">Academic prototype only. This model classifies historical flood-event records as “Flood” or “Severe Flood”; it is not a live local flood warning system.</p>
+</main></body></html>

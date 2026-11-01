@@ -1,0 +1,8 @@
+              precision    recall  f1-score   support
+
+       Flood       0.84      0.74      0.79       584
+Severe Flood       0.62      0.75      0.68       326
+
+    accuracy                           0.74       910
+   macro avg       0.73      0.74      0.73       910
+weighted avg       0.76      0.74      0.75       910
